@@ -1,0 +1,32 @@
+.weather-card {
+    background-color: #1e213a;
+    padding: 18px;
+    text-align: center;
+    height: 170px;
+    width: 137px;
+    font-family: "Raleway", sans-serif;
+}
+
+.weather-card:hover {
+    background-color: #050820;
+}
+
+.weather-card h5{
+    font-size: 18px;
+    line-height: 21px;
+    color: #88869d;
+    font-weight: 500;
+}
+
+.weather-icons img{
+    height: 62px;
+    width: 62px;
+}
+
+.temp-wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #88869d;
+    font-size: 14px;
+}

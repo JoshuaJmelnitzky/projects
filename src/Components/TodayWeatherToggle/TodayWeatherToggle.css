@@ -1,0 +1,77 @@
+.sidebar-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background-color: #1e213a;
+    z-index: 1;
+    padding: 20px 45px;
+  }
+
+  .close-menu-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+  }
+  
+  .menu-closed {
+    padding: 0;
+    color: #e7e7eb;
+    background-color: #1e213a;
+  }
+  
+  .menu-closed svg {
+    width: 40px;
+    height: 40px;
+  }
+
+
+  .search-place-form {
+    position: relative;
+    display: flex;
+  }
+  
+  .search-place-form input {
+    border: 1px solid #e7e7eb;
+    background: transparent;
+    padding: 14px;
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    line-height: 19px;
+    padding-left: 40px;
+    color: inherit;
+    border-radius: 0;
+    outline: none;
+    width: 100%;
+    color: #e7e7eb;
+  }
+  
+  .search-place-form label {
+    font-size: 0;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+  
+  .search-place-form label svg {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+  }
+  
+  .submit-btn {
+    background-color: #3c47e9;
+    margin-left: 12px;
+    font-weight: 600;
+    color: #e7e7eb;
+  }
+  
+  .submit-btn:hover {
+    background-color: #5961d9;
+  }
+
+

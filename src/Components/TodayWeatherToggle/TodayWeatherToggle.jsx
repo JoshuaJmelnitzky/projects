@@ -1,12 +1,11 @@
+import { useState } from 'react'
+import { MdOutlineClose, MdSearch } from "react-icons/md";
 import { useWeatherContext } from "../../Context/WeatherContext";
-import { useState } from "react";
+import './TodayWeatherToggle.css'
 
-
-const TodayWeatherToggle = () => {
-
+const TodayWeatherToggle = ({toggleMenu}) => {
     const [locationSearch, setLocationSearch] = useState('');
-
-    const { getWoeidFromLocation, cityWeather } = useWeatherContext();
+    const { getWoeidFromLocation } = useWeatherContext();
 
     const searchPlaceHandler = (e) => {
         e.preventDefault();
@@ -15,70 +14,32 @@ const TodayWeatherToggle = () => {
         }
         setLocationSearch('');
     };
-    
-    
-    if (cityWeather){
-        const { consolidated_weather } = cityWeather;
-
-        const {
-            applicable_date,
-            the_temp,
-            weather_state_name,
-            weather_state_abbr,
-        } = consolidated_weather[0];
+ 
+    return (
         
-
-        return(
-            <>
-            { Math.floor(the_temp) } 
-            <div>
-                { applicable_date } 
+        <div className="sidebar-menu">
+            <div className="close-menu-wrapper">
+                <button className="menu-closed" onClick={toggleMenu}>
+        
+                    <MdOutlineClose />
+                </button>
             </div>
-
-            <div>
-                { weather_state_name }
-            </div>
-            { weather_state_abbr }
-            </>
-        )
-          
-    }
-
-  
-  return (
-    <div className="sidebar-menu">
-        <div className="close-menu-wrapper">
-
-        </div>
-
-        <div>
     
+            {/* SEARCH FOR PLACE */}
+            <form className="search-place-form" onSubmit={searchPlaceHandler}>
+                <label htmlFor="search-location">
+                    <MdSearch />
+                    Seach for places
+                </label>
 
+                <input type="text" placeholder="search location" id="search-location" value={locationSearch} onChange={(e) => setLocationSearch(e.target.value)}/>
+
+                <button type="submit" className="submit-btn">
+                    Search
+                </button>
+            </form>
         </div>
-
-        {/* SEARCH FOR PLACE */}
-        <form className="search-place-form" onSubmit={searchPlaceHandler}>
-            <label htmlFor="search-location">
-
-                Seach for places
-        
-            </label>
-            <input
-                type="text"
-                placeholder="search location"
-                id="search-location"
-                value={locationSearch}
-                onChange={(e) => setLocationSearch(e.target.value)}
-         
-            />
-            <button type="submit" className="submit-btn">
-                Search
-            </button>
-        
-
-        </form>
-    </div>
-  )
+    )
 }
 
 export default TodayWeatherToggle

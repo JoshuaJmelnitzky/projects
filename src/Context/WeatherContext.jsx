@@ -1,4 +1,4 @@
-import { useState, useContext, createContext  } from "react";
+import { useState, useContext, createContext, useEffect  } from "react";
 
 const apiURL = `https://the-ultimate-api-challenge.herokuapp.com/metaweather.com/api/location`;
 
@@ -11,14 +11,16 @@ export function useWeatherContext() {
 export const WeatherContextProvider = ({children}) => {
 
     const [cityWeather, setCityWeather] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+
 
     const getWoeidFromLocation = (location) => {
+        setIsLoading(true);
         fetch(`${apiURL}/search/?query=${location}`)
           .then((res) => res.json())
-          .then((data) => { console.log(data[0])
+          .then((data) => {
             if (data[0]) {
               fetchWoeidLocation(data[0].woeid);
-              console.log(data[0].woeid)
             }
         });
     };
@@ -27,16 +29,40 @@ export const WeatherContextProvider = ({children}) => {
     const fetchWoeidLocation = (woied) => {
         fetch(`${apiURL}/${woied}`)
             .then((res) => res.json())
-            .then((data) => {setCityWeather(data);
-                console.log(data)
+            .then((data) => {
+                setCityWeather(data);
+                setIsLoading(false);
+            });
+    };  
+
+
+    useEffect(() => {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+            getWoeidFromLatLon(`${pos.coords.latitude},${pos.coords.longitude}`);
+        });
+      }, []);
+
+
+    const getWoeidFromLatLon = (lattLong) => {
+        setIsLoading(true);
+        fetch(`${apiURL}/search/?lattlong=${lattLong}`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data[0]) {
+              fetchWoeidLocation(data[0].woeid);
+            }
         });
     };
+
+
 
     return(
         <WeatherContext.Provider value = {{
             cityWeather,
+            isLoading,
             getWoeidFromLocation,
-            fetchWoeidLocation}}>
+            fetchWoeidLocation,
+            getWoeidFromLatLon}}>
           
 
             {children}

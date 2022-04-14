@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import './App.css';
-import TodayWeatherToggle from './Components/TodayWeatherToggle/TodayWeatherToggle';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import TodayWeather from './Components/TodayWeather/TodayWeather';
 import { WeatherContextProvider } from './Context/WeatherContext';
-
 
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
     
     <WeatherContextProvider>
 
-        <TodayWeatherToggle/>
+        <TodayWeather/>
 
     </WeatherContextProvider>
 
