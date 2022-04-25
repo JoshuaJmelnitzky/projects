@@ -1,6 +1,6 @@
 import { useState, useContext, createContext, useEffect  } from "react";
 
-const apiURL = `https://the-ultimate-api-challenge.herokuapp.com/metaweather.com/api/location`;
+const apiURL = `https://cors-anywhere.herokuapp.com/metaweather.com/api/location`;
 
 const WeatherContext = createContext([]);
 
